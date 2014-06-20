@@ -1,6 +1,6 @@
-# Airbnb JavaScript Style Guide() {
+# SignalFuse JavaScript Style Guide() {
 
-*A mostly reasonable approach to JavaScript*
+*A mostly reasonable approach to JavaScript, derived from the Airbnb style guide*
 
 
 ## Table of Contents
