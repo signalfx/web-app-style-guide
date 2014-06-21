@@ -5,7 +5,6 @@
 
 ## Table of Contents
 
-  1. [Types](#types)
   1. [Objects](#objects)
   1. [Arrays](#arrays)
   1. [Strings](#strings)
@@ -24,10 +23,7 @@
   1. [Accessors](#accessors)
   1. [Constructors](#constructors)
   1. [Events](#events)
-  1. [Modules](#modules)
-  1. [jQuery](#jquery)
-  1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
-  1. [Testing](#testing)
+  1. [Angular](#angular)
   1. [Performance](#performance)
   1. [Resources](#resources)
   1. [In the Wild](#in-the-wild)
@@ -35,39 +31,6 @@
   1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
   1. [Contributors](#contributors)
   1. [License](#license)
-
-## Types
-
-  - **Primitives**: When you access a primitive type you work directly on its value
-
-    + `string`
-    + `number`
-    + `boolean`
-    + `null`
-    + `undefined`
-
-    ```javascript
-    var foo = 1,
-        bar = foo;
-
-    bar = 9;
-
-    console.log(foo, bar); // => 1, 9
-    ```
-  - **Complex**: When you access a complex type you work on a reference to its value
-
-    + `object`
-    + `array`
-    + `function`
-
-    ```javascript
-    var foo = [1, 2],
-        bar = foo;
-
-    bar[0] = 9;
-
-    console.log(foo[0], bar[0]); // => 9, 9
-    ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -81,22 +44,6 @@
 
     // good
     var item = {};
-    ```
-
-  - Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61)
-
-    ```javascript
-    // bad
-    var superman = {
-      default: { clark: 'kent' },
-      private: true
-    };
-
-    // good
-    var superman = {
-      defaults: { clark: 'kent' },
-      hidden: true
-    };
     ```
 
   - Use readable synonyms in place of reserved words.
@@ -170,8 +117,21 @@
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+   - Prefer using ES5 iteration functions (forEach, filter, some, all, map, and reduce) over for(;;) loops. Exceptions can be made if performance is an issue.
+   
+   ```javascript
+   // bad
+   var numbers = [1, 2, 3],
+       index;
 
+   for(index = 0; index < numbers.length; index++){
+       doSomethingWithANumber(numbers[index]);
+   }
+   
+   // good
+   var numbers = [1, 2, 3];
+   
+   numbers.forEach(doSomethingWithANumber);**[⬆ back to top](#table-of-contents)**
 
 ## Strings
 
@@ -456,6 +416,35 @@
       return true;
     }
     ```
+
+
+  - Avoid "public private" variables. There's no way to enforce their privacy, so they create a false sense of security which will, eventually, fail.
+    
+    ```javascript
+    // bad
+    function createHero() {
+        var man = {};
+        
+        man._adjective = 'Dark';
+        man.getTitle = function getTagline(){
+            return 'The ' + this._adjective + ' Knight';
+        };
+
+        return man;
+     }
+
+    // good
+    function createHero() {
+        var man = {},
+            adjective = 'Dark';
+        
+        man.getTitle = function getTagline(){
+            return 'The ' + adjective + ' Knight';
+        };
+
+        return man;
+     }
+     ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -866,34 +855,6 @@
     };
     ```
 
-  - Additional trailing comma: **Nope.** This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in ES5 ([source](http://es5.github.io/#D)):
-
-  > Edition 5 clarifies the fact that a trailing comma at the end of an ArrayInitialiser does not add to the length of the array. This is not a semantic change from Edition 3 but some implementations may have previously misinterpreted this.
-
-    ```javascript
-    // bad
-    var hero = {
-      firstName: 'Kevin',
-      lastName: 'Flynn',
-    };
-
-    var heroes = [
-      'Batman',
-      'Superman',
-    ];
-
-    // good
-    var hero = {
-      firstName: 'Kevin',
-      lastName: 'Flynn'
-    };
-
-    var heroes = [
-      'Batman',
-      'Superman'
-    ];
-    ```
-
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -1117,8 +1078,6 @@
     };
     ```
 
-  - **Note:** IE8 and below exhibit some quirks with named function expressions.  See [http://kangax.github.io/nfe/](http://kangax.github.io/nfe/) for more info.
-
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -1292,40 +1251,34 @@
   **[⬆ back to top](#table-of-contents)**
 
 
-## Modules
 
-  - The module should start with a `!`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated. [Explanation](https://github.com/airbnb/javascript/issues/44#issuecomment-13063933)
-  - The file should be named with camelCase, live in a folder with the same name, and match the name of the single export.
-  - Add a method called `noConflict()` that sets the exported module to the previous version and returns this one.
-  - Always declare `'use strict';` at the top of the module.
+## Angular
+
+  - Don't manipulate DOM in Angular Controllers. Use directives when DOM needs to be manipulated.
+
+  - Don't use global native objects directly, always inject the Angular wrappers; this makes testing much easier.
+    
+    ```javascript
+    // bad
+    function MyController() {
+        setTimeout(window.alert('Boop!'));
+    }
+
+    // good
+    function MyController($window, $setTimeout) {
+        $setTimeout($window.alert('Boop!'));
+    }
+    
+  - List native objects (ones starting with $) first in a function dependency parameter list.
 
     ```javascript
-    // fancyInput/fancyInput.js
+    // bad
+    function MyController(myService, $http) { ... }
+    
+    // good
+    function MyController($http, myService) { ... }
 
-    !function(global) {
-      'use strict';
-
-      var previousFancyInput = global.FancyInput;
-
-      function FancyInput(options) {
-        this.options = options || {};
-      }
-
-      FancyInput.noConflict = function noConflict() {
-        global.FancyInput = previousFancyInput;
-        return FancyInput;
-      };
-
-      global.FancyInput = FancyInput;
-    }(this);
-    ```
-
-**[⬆ back to top](#table-of-contents)**
-
-
-## jQuery
-
-  - Prefix jQuery object variables with a `$`.
+  - Prefix jQuery object variables (such as those returned by angular.element) with a `$`.
 
     ```javascript
     // bad
@@ -1380,26 +1333,6 @@
 
     // good
     $sidebar.find('ul').hide();
-    ```
-
-**[⬆ back to top](#table-of-contents)**
-
-
-## ECMAScript 5 Compatibility
-
-  - Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
-
-**[⬆ back to top](#table-of-contents)**
-
-
-## Testing
-
-  - **Yup.**
-
-    ```javascript
-    function() {
-      return true;
-    }
     ```
 
 **[⬆ back to top](#table-of-contents)**
