@@ -1268,6 +1268,7 @@
     function MyController($window, $setTimeout) {
         $setTimeout($window.alert('Boop!'));
     }
+    ```
     
   - List native objects (ones starting with $) first in a function dependency parameter list.
 
@@ -1277,6 +1278,7 @@
     
     // good
     function MyController($http, myService) { ... }
+```
 
   - Prefix jQuery object variables (such as those returned by angular.element) with a `$`.
 
