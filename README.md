@@ -1,7 +1,88 @@
-# SignalFuse JavaScript Style Guide() {
+# SignalFuse Style Guide() {
 
-*A mostly reasonable approach to JavaScript, derived from the Airbnb style guide*
+*A mostly reasonable approach to web application development, derived from the Airbnb JavaScript style guide*
 
+## The short version
+
+```javascript
+// Always prefer descriptive names over short abbreviations.
+var ConstructorName = function (anArray) { // note the space before the bracket
+  // two space tabs
+  var myVariableName = 'use single quotes', // declare variables first in functions
+    myOtherVariable = 1 + (20 + 3), // spaces between operators
+    andAnother = []; // semicolons are good
+  
+  // White space is good, use lots of white space.
+  this._privateProperty = 123; // leading _ for private properties (not variables)
+
+  // Use === and !== over == and !=
+  if (andAnother !== undefined) return 42; // no braces ok for single line blocks
+  
+  if (1 === 2) { // braces nescessary for multi-line blocks
+    return 'Lots and lots of text ' + // max 80 chars per line
+      'more and more text';
+  }
+  
+  return anArray
+    .filter(myFilteringFunction) // use indents for long method chains
+    .map(myMappingFunction) // prefer array generics over iteration blocks
+    .reduce(myReducingFunction);
+}
+
+// It's ok to use common short cuts. If a few major libraries use it, it's probably ok.
+if (truthy) {}
+if (undefinedOrNull == null) {} // will be true
+if (collection.length) {} // only enter block if collection has values
+```
+
+```css
+/* Write lots of comments to describe style use CSS is notoriously difficult 
+   to maintain, comments ease the burden.
+*/
+a {} /* avoid styling html tags directly */
+
+.a-parent-class-name { /* prefer classes over ids */
+  color: blue;
+  margin: 0; /* don't specify units for zero values */
+  
+  .a-child-class-name { /* keep nesting shallow */
+  }
+  
+  .multiple,
+  .classes,
+  .multiple-lines {
+    margin-bottom: 20px;
+  }
+}
+
+#IdsArePascalCased {} /* if you do use ids, only have one per rule */
+```
+
+```html
+<!doctype html>
+<title>My page title</title>
+<h2>Navigation</h2>
+<a href="//app.signalfx.com"> <!-- use lots of spacing and white space to separate blocks -->
+  <span class="important">Link</span> <!-- Single lines are ok if they're short -->
+</a>
+<!-- Avoid unnescessary mark up. The prior three lines should probably be reduced to a 
+  single one, like <a href="..." class="important">Link</a>.
+-->
+
+
+<!-- No need to close self-closing elements. Also no need to explicitly set unary properties
+  such as "disabled" or "required"
+-->
+<input type="text" disabled>
+
+<!-- prefix directives with sf -->
+<!-- when dealing with multiple properties, put them in their own lines -->
+<sf-a-directive
+  property="value" 
+  anotherProperty="anotherValue"
+/>
+
+```
 
 ## Table of Contents
 
