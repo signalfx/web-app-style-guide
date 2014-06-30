@@ -11,7 +11,7 @@ the reasons next to the code in question.
 ### JavaScript
 ```javascript
 // Always prefer descriptive names over short abbreviations.
-var ConstructorName = function(anArray) { // note the space before the bracket
+var ConstructorName = function (anArray) { // note the space before the bracket
   // two space tabs
   var myVariableName = 'use single quotes', // declare variables first in functions
     myOtherVariable = 1 + (20 + 3), // spaces between operators
@@ -305,7 +305,7 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // anonymous function expression
-    var anonymous = function() {
+    var anonymous = function () {
       return true;
     };
 
@@ -315,7 +315,7 @@ a {} /* avoid styling html tags directly */
     };
 
     // immediately-invoked function expression (IIFE)
-    (function() {
+    (function () {
       console.log('Welcome to the Internet. Please follow me.');
     })();
     ```
@@ -445,7 +445,7 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    function() {
+    function () {
       test();
       console.log('doing stuff..');
 
@@ -461,7 +461,7 @@ a {} /* avoid styling html tags directly */
     }
 
     // good
-    function() {
+    function () {
       var name = getName();
 
       test();
@@ -477,7 +477,7 @@ a {} /* avoid styling html tags directly */
     }
 
     // bad
-    function() {
+    function () {
       var name = getName();
 
       if (!arguments.length) {
@@ -488,7 +488,7 @@ a {} /* avoid styling html tags directly */
     }
 
     // good
-    function() {
+    function () {
       if (!arguments.length) {
         return false;
       }
@@ -569,7 +569,7 @@ a {} /* avoid styling html tags directly */
 
       anonymous(); // => TypeError anonymous is not a function
 
-      var anonymous = function() {
+      var anonymous = function () {
         console.log('anonymous function expression');
       };
     }
@@ -687,10 +687,10 @@ a {} /* avoid styling html tags directly */
     }
 
     // bad
-    function() { return false; }
+    function () { return false; }
 
     // good
-    function() {
+    function () {
       return false;
     }
     ```
@@ -797,17 +797,17 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    function() {
+    function () {
     ∙∙∙∙var name;
     }
 
     // bad
-    function() {
+    function () {
     ∙var name;
     }
 
     // good
-    function() {
+    function () {
     ∙∙var name;
     }
     ```
@@ -852,14 +852,14 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    (function(global) {
+    (function (global) {
       // ...stuff...
     })(this);
     ```
 
     ```javascript
     // bad
-    (function(global) {
+    (function (global) {
       // ...stuff...
     })(this);↵
     ↵
@@ -867,7 +867,7 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // good
-    (function(global) {
+    (function (global) {
       // ...stuff...
     })(this);↵
     ```
@@ -946,19 +946,19 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    (function() {
+    (function () {
       var name = 'Skywalker'
       return name
     })()
 
     // good
-    (function() {
+    (function () {
       var name = 'Skywalker';
       return name;
     })();
 
     // good
-    ;(function() {
+    ;(function () {
       var name = 'Skywalker';
       return name;
     })();
@@ -1079,7 +1079,7 @@ a {} /* avoid styling html tags directly */
 
     // good
     var thisIsMyObject = {};
-    function thisIsMyFunction() {}
+    function thisIsMyFunction () {}
     var user = new User({
       name: 'Bob Parr'
     });
@@ -1122,25 +1122,25 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    function() {
+    function () {
       var self = this;
-      return function() {
+      return function () {
         console.log(self);
       };
     }
 
     // bad
-    function() {
+    function () {
       var that = this;
-      return function() {
+      return function () {
         console.log(that);
       };
     }
 
     // good
-    function() {
+    function () {
       var _this = this;
-      return function() {
+      return function () {
         console.log(_this);
       };
     }
@@ -1150,7 +1150,7 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    var log = function(msg) {
+    var log = function (msg) {
       console.log(msg);
     };
 
@@ -1205,11 +1205,11 @@ a {} /* avoid styling html tags directly */
       this.set('lightsaber', lightsaber);
     }
 
-    Jedi.prototype.set = function(key, val) {
+    Jedi.prototype.set = function (key, val) {
       this[key] = val;
     };
 
-    Jedi.prototype.get = function(key) {
+    Jedi.prototype.get = function (key) {
       return this[key];
     };
     ```
@@ -1251,12 +1251,12 @@ a {} /* avoid styling html tags directly */
 
     ```javascript
     // bad
-    Jedi.prototype.jump = function() {
+    Jedi.prototype.jump = function () {
       this.jumping = true;
       return true;
     };
 
-    Jedi.prototype.setHeight = function(height) {
+    Jedi.prototype.setHeight = function (height) {
       this.height = height;
     };
 
@@ -1265,12 +1265,12 @@ a {} /* avoid styling html tags directly */
     luke.setHeight(20) // => undefined
 
     // good
-    Jedi.prototype.jump = function() {
+    Jedi.prototype.jump = function () {
       this.jumping = true;
       return this;
     };
 
-    Jedi.prototype.setHeight = function(height) {
+    Jedi.prototype.setHeight = function (height) {
       this.height = height;
       return this;
     };
@@ -1312,7 +1312,7 @@ a {} /* avoid styling html tags directly */
 
     ...
 
-    $(this).on('listingUpdated', function(e, listingId) {
+    $(this).on('listingUpdated', function (e, listingId) {
       // do something with listingId
     });
     ```
@@ -1325,7 +1325,7 @@ a {} /* avoid styling html tags directly */
 
     ...
 
-    $(this).on('listingUpdated', function(e, data) {
+    $(this).on('listingUpdated', function (e, data) {
       // do something with data.listingId
     });
     ```
