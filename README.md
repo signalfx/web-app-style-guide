@@ -4,9 +4,14 @@
 
 ## The short version
 
+Above all else, optimize for readability and maintainability of the code. If you need to
+do something unusual for the sake of performance or development time, *always* comment
+the reasons next to the code in question. 
+
+### JavaScript
 ```javascript
 // Always prefer descriptive names over short abbreviations.
-var ConstructorName = function (anArray) { // note the space before the bracket
+var ConstructorName = function(anArray) { // note the space before the bracket
   // two space tabs
   var myVariableName = 'use single quotes', // declare variables first in functions
     myOtherVariable = 1 + (20 + 3), // spaces between operators
@@ -35,6 +40,7 @@ if (undefinedOrNull == null) {} // will be true
 if (collection.length) {} // only enter block if collection has values
 ```
 
+### CSS (LESS)
 ```css
 /* Write lots of comments to describe style use CSS is notoriously difficult 
    to maintain, comments ease the burden.
@@ -58,6 +64,7 @@ a {} /* avoid styling html tags directly */
 #IdsArePascalCased {} /* if you do use ids, only have one per rule */
 ```
 
+### HTML
 ```html
 <!doctype html>
 <title>My page title</title>
