@@ -1,6 +1,6 @@
-# SignalFuse Style Guide() {
+# Web App Style Guide
 
-*A mostly reasonable approach to web application development, derived from the Airbnb JavaScript style guide*
+*A mostly reasonable approach to web application development, derived from the [Airbnb](https://github.com/airbnb/javascript) and [GitHub](https://github.com/styleguide) styleguides.*
 
 ## The short version
 
