@@ -69,7 +69,7 @@ a {} /* avoid styling html tags directly */
 <!doctype html>
 <title>My page title</title>
 <h2>Navigation</h2>
-<a href="//app.signalfx.com"> <!-- use lots of spacing and white space to separate blocks -->
+<a href="//app.signalfuse.com"> <!-- use lots of spacing and white space to separate blocks -->
   <span class="important">Link</span> <!-- Single lines are ok if they're short -->
 </a>
 <!-- Avoid unnescessary mark up. The prior three lines should probably be reduced to a 
