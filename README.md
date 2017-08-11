@@ -6,7 +6,7 @@
 
 Above all else, optimize for readability and maintainability of the code. If you need to
 do something unusual for the sake of performance or development time, *always* comment
-the reasons next to the code in question. 
+the reasons next to the code in question.
 
 ### JavaScript
 ```javascript
@@ -16,18 +16,18 @@ var ConstructorName = function (anArray) { // note the space before the bracket
   var myVariableName = 'use single quotes', // declare variables first in functions
     myOtherVariable = 1 + (20 + 3), // spaces between operators
     andAnother = []; // semicolons are good
-  
+
   // White space is good, use lots of white space.
   this._privateProperty = 123; // leading _ for private properties (not variables)
 
   // Use === and !== over == and !=
   if (andAnother !== undefined) return 42; // no braces ok for single line blocks
-  
+
   if (1 === 2) { // braces nescessary for multi-line blocks
     return 'Lots and lots of text ' + // max 80 chars per line
       'more and more text';
   }
-  
+
   return anArray
     .filter(myFilteringFunction) // use indents for long method chains
     .map(myMappingFunction) // prefer array generics over iteration blocks
@@ -42,7 +42,7 @@ if (collection.length) {} // only enter block if collection has values
 
 ### CSS (LESS)
 ```css
-/* Write lots of comments to describe style use CSS is notoriously difficult 
+/* Write lots of comments to describe style use CSS is notoriously difficult
    to maintain, comments ease the burden.
 */
 a {} /* avoid styling html tags directly */
@@ -50,10 +50,10 @@ a {} /* avoid styling html tags directly */
 .a-parent-class-name { /* prefer classes over ids */
   color: blue;
   margin: 0; /* don't specify units for zero values */
-  
+
   .a-child-class-name { /* keep nesting shallow */
   }
-  
+
   .multiple,
   .classes,
   .multiple-lines {
@@ -72,7 +72,7 @@ a {} /* avoid styling html tags directly */
 <a href="//app.signalfuse.com"> <!-- use lots of spacing and white space to separate blocks -->
   <span class="important">Link</span> <!-- Single lines are ok if they're short -->
 </a>
-<!-- Avoid unnescessary mark up. The prior three lines should probably be reduced to a 
+<!-- Avoid unnescessary mark up. The prior three lines should probably be reduced to a
   single one, like <a href="..." class="important">Link</a>.
 -->
 
@@ -85,7 +85,7 @@ a {} /* avoid styling html tags directly */
 <!-- prefix directives with sf -->
 <!-- when dealing with multiple properties, put them in their own lines -->
 <sf-a-directive
-  property="value" 
+  property="value"
   anotherProperty="anotherValue"
 />
 
@@ -200,7 +200,7 @@ a {} /* avoid styling html tags directly */
     ```
 
    - Prefer using ES5 iteration functions (forEach, filter, some, all, map, and reduce) over for(;;) loops. Exceptions can be made if performance is an issue.
-   
+
    ```javascript
    // bad
    var numbers = [1, 2, 3],
@@ -209,11 +209,14 @@ a {} /* avoid styling html tags directly */
    for(index = 0; index < numbers.length; index++){
        doSomethingWithANumber(numbers[index]);
    }
-   
+
    // good
    var numbers = [1, 2, 3];
-   
-   numbers.forEach(doSomethingWithANumber);**[⬆ back to top](#table-of-contents)**
+
+   numbers.forEach(doSomethingWithANumber);
+   ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Strings
 
@@ -501,12 +504,12 @@ a {} /* avoid styling html tags directly */
 
 
   - Avoid "public private" variables. There's no way to enforce their privacy, so they create a false sense of security which will, eventually, fail.
-    
+
     ```javascript
     // bad
     function createHero() {
         var man = {};
-        
+
         man._adjective = 'Dark';
         man.getTitle = function getTagline(){
             return 'The ' + this._adjective + ' Knight';
@@ -519,7 +522,7 @@ a {} /* avoid styling html tags directly */
     function createHero() {
         var man = {},
             adjective = 'Dark';
-        
+
         man.getTitle = function getTagline(){
             return 'The ' + adjective + ' Knight';
         };
@@ -1339,7 +1342,7 @@ a {} /* avoid styling html tags directly */
   - Don't manipulate DOM in Angular Controllers. Use directives when DOM needs to be manipulated.
 
   - Don't use global native objects directly, always inject the Angular wrappers; this makes testing much easier.
-    
+
     ```javascript
     // bad
     function MyController() {
@@ -1351,13 +1354,13 @@ a {} /* avoid styling html tags directly */
         $setTimeout($window.alert('Boop!'));
     }
     ```
-    
+
   - List native objects (ones starting with $) first in a function dependency parameter list.
 
     ```javascript
     // bad
     function MyController(myService, $http) { ... }
-    
+
     // good
     function MyController($http, myService) { ... }
 ```
