@@ -789,7 +789,7 @@ a {} /* avoid styling html tags directly */
 
       return this;
     }
-  ```
+    ```
 
 **[⬆ back to top](#table-of-contents)**
 
