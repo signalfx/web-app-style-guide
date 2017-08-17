@@ -1363,7 +1363,7 @@ a {} /* avoid styling html tags directly */
 
     // good
     function MyController($http, myService) { ... }
-```
+    ```
 
   - Prefix jQuery object variables (such as those returned by angular.element) with a `$`.
 
